@@ -53,48 +53,28 @@ app.get('/:word/echo',(req,res)=>{
     })
 })
 
+const handler = (req,res)=>{
+    console.log()
+    const {first, last}=req.query;
+    res.send({name : `${first} ${last}`})
+}
+
+app.route("/name").get(handler).post(handler);
 
 
 
 // req.method
 // req.path
 // req.ip
+
 // req.params
+// req.query
+
 // res.sendFile
 // res.sendFile(absolutePath)
 // res.send
-// res.sendFile
+
 // __dirname - relative path
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
