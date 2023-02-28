@@ -19,18 +19,6 @@ app.get("/",function (req,res) {
     res.sendFile(absolutePath)
 })
 
-app.get(
-  "/now",
-   (req, res, next) => {
-    req.time = new Date().toString();
-    next();
-  },
-  (req, res) => {
-    res.send({
-      time: req.time,
-    });
-  }
-);
 
 app.get("/json",function (req,res) {
 
@@ -42,6 +30,41 @@ app.get("/json",function (req,res) {
         "message" : upperCaseorNot? "HELLO JSON" : "Hello json",
     })
 })
+
+// Chain Middleware to Create a Time Server
+app.get(
+    "/now",
+     (req, res, next) => {
+      req.time = new Date().toString();
+      next();
+    },
+    (req, res) => {
+      res.send({
+        time: req.time,
+      });
+    }
+  );
+
+//   Get Route Parameter Input from the Client
+  
+app.get('/:word/echo',(req,res)=>{
+    res.send({
+        echo : req.params?.word
+    })
+})
+
+
+
+
+// req.method
+// req.path
+// req.ip
+// req.params
+// res.sendFile
+// res.sendFile(absolutePath)
+// res.send
+// res.sendFile
+// __dirname - relative path
 
 
 
