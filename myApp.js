@@ -59,7 +59,7 @@ app.get('/:word/echo',(req,res)=>{
 
 const handler = (req,res)=>{
     console.log(req.body)
-    const {first, last}=req.query;
+    const {first, last}=req.body;
     res.send({name : `${first} ${last}`})
 }
 
