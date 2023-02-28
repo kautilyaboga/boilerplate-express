@@ -19,14 +19,18 @@ app.get("/",function (req,res) {
     res.sendFile(absolutePath)
 })
 
-app.get("/now",function (req,res,next) {
+app.get(
+  "/now",
+   (req, res, next) => {
     req.time = new Date().toString();
     next();
-}, function (req,res){
+  },
+  (req, res) => {
     res.send({
-        time : req.time
-    })
-})
+      time: req.time,
+    });
+  }
+);
 
 app.get("/json",function (req,res) {
 
