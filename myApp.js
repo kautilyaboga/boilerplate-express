@@ -1,5 +1,6 @@
 require('dotenv').config();
 
+let bodyParser= require('body-parser');
 let express = require('express');
 let app = express();
 
@@ -8,6 +9,9 @@ absolutePath = __dirname + '/views/index.html'
 console.log("Hello World")
 
 app.use(`/public`, express.static(`${__dirname}/public`))
+
+app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.json())
 
 app.use(function (req,res,next) {
     console.log(`${req.method} ${req.path} - ${req.ip}`)
@@ -54,7 +58,7 @@ app.get('/:word/echo',(req,res)=>{
 })
 
 const handler = (req,res)=>{
-    console.log()
+    console.log(req.body)
     const {first, last}=req.query;
     res.send({name : `${first} ${last}`})
 }
